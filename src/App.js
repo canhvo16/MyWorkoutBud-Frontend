@@ -24,8 +24,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile" element={<PrivateOutlet />}>
+        <Route path="/profile/:id" element={<ProfilePage />} />
+        <Route path="/profile/:id" element={<PrivateOutlet />}>
           <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
           <Route path="/addWorkout" element={<AddWorkoutPage />} />
         </Route>
