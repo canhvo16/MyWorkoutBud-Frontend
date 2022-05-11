@@ -1,5 +1,5 @@
 import './style//App.css'
-import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { SignInUser, RegisterUser, CheckSession } from './services/Auth'
@@ -73,6 +73,18 @@ function App() {
     localStorage.clear()
   }
 
+  const checkToken = async () => {
+    const payload = await CheckSession()
+    setPayload(payload)
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
   return (
     <div className="App">
       <header className="header">
@@ -102,10 +114,8 @@ function App() {
           }
         />
         <Route path="/profile/:id" element={<ProfilePage />} />
-        <Route path="/profile/:id" element={<PrivateOutlet />}>
-          <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
-          <Route path="/addWorkout" element={<AddWorkoutPage />} />
-        </Route>
+        <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
+        <Route path="/addWorkout" element={<AddWorkoutPage />} />
       </Routes>
     </div>
   )
