@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 
-const NavBar = ({ payload }) => {
+const NavBar = ({ payload, logout }) => {
 
   let profileURL
 
@@ -22,6 +22,7 @@ const NavBar = ({ payload }) => {
           <NavLink to={profileURL}>Profile</NavLink>
           <NavLink to='/workoutLogs'>Workout Logs</NavLink>
           <NavLink to='/addWorkout'>Add Workout</NavLink>
+          <NavLink to='/' onClick={logout}>Logout</NavLink>
         </div>
       )} 
     </div>

@@ -68,10 +68,15 @@ function App() {
     }
   }
 
+  const logout = () => {
+    setPayload(null)
+    localStorage.clear()
+  }
+
   return (
     <div className="App">
       <header className="header">
-        <NavBar payload={payload} />
+        <NavBar payload={payload} logout={logout} />
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
