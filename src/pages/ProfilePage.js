@@ -1,6 +1,7 @@
 import UserInfoEditor from '../components/UserInfoEditor'
 import PasswordEditor from '../components/PasswordEditor'
 import Goals from '../components/Goals'
+import CreateGoal from '../components/CreateGoal'
 
 const ProfilePage = ({
   user,
@@ -74,7 +75,12 @@ const ProfilePage = ({
         <div>{editorBox}</div>
         <div>{passwordBox}</div>
       </div>
-      <div>{goalTrackers}</div>
+      <div>
+        <div>
+          <button>Add A Goal Tracker</button>
+        </div>
+        <div>{goalTrackers}</div>
+      </div>
     </div>
   )
 }
