@@ -5,6 +5,7 @@ const UserInfoEditor = ({ userEditor, onChangeUserInfo, onSubmitUserInfo }) => {
         <h3>Current Email</h3>
         <input 
           type="text" 
+          name="email"
           value={userEditor.email}
           placeholder='Current Email'
           onChange={onChangeUserInfo}
@@ -12,6 +13,7 @@ const UserInfoEditor = ({ userEditor, onChangeUserInfo, onSubmitUserInfo }) => {
         <h3>Update Name</h3>
         <input 
           type="text" 
+          name="name"
           value={userEditor.name}
           placeholder='New Name'
           onChange={onChangeUserInfo}
@@ -19,6 +21,7 @@ const UserInfoEditor = ({ userEditor, onChangeUserInfo, onSubmitUserInfo }) => {
         <h3>Update Photo</h3>
         <input 
           type="text" 
+          name="photo"
           value={userEditor.photo}
           placeholder="Photo URL"
           onChange={onChangeUserInfo}

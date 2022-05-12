@@ -45,3 +45,21 @@ export const GetUser = async (id) => {
     throw error
   }
 }
+
+export const UpdateInfo = async (data) => {
+  try {
+    const res = await Client.put('/auth/updateInfo', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const UpdatePassword = async (data) => {
+  try {
+    const res = await Client.put('/auth/updatePassword', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

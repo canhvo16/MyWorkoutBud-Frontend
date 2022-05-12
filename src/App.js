@@ -6,7 +6,8 @@ import {
   SignInUser,
   RegisterUser,
   CheckSession,
-  GetUser
+  GetUser,
+  UpdateInfo
 } from './services/Auth'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -41,12 +42,17 @@ function App() {
   const onChangeUserInfo = (e) => {
     setUserEditor({
       ...userEditor,
-      [e.target.name]: e.target.name
+      [e.target.name]: e.target.value
     })
   }
 
   const onSubmitUserInfo = async (e) => {
     e.preventDefault()
+    await UpdateInfo(userEditor)
+    setUserEditor({ email: '', name: '', photo: '' })
+    const updatedUser = await GetUser(payload.id)
+    setUser(updatedUser)
+    toggleEditor(false)
   }
 
   const showEditor = () => {
