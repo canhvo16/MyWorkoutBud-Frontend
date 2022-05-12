@@ -11,7 +11,11 @@ import {
   UpdatePassword,
   DestroyAccount
 } from './services/Auth'
-import { GetUserGoals } from './services/User'
+import {
+  GetUserGoals,
+  AddDaysCompleted,
+  MinusDaysCompleted
+} from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
@@ -48,6 +52,27 @@ function App() {
     newPassword: ''
   })
   const [goals, setGoals] = useState(null)
+
+  const checkToken = async () => {
+    const payload = await CheckSession()
+    setPayload(payload)
+    const user = await GetUser(payload.id)
+    setUser(user)
+    const goals = await GetUserGoals(payload.id)
+    setGoals(goals)
+  }
+
+  const addDay = async (id) => {
+    await AddDaysCompleted(id)
+    const goals = await GetUserGoals(payload.id)
+    setGoals(goals)
+  }
+
+  const minusDay = async (id) => {
+    await MinusDaysCompleted(id)
+    const goals = await GetUserGoals(payload.id)
+    setGoals(goals)
+  }
 
   const destroyAccount = async () => {
     if (
@@ -94,8 +119,8 @@ function App() {
     e.preventDefault()
     await UpdateInfo(userEditor)
     setUserEditor({ email: '', name: '', photo: '' })
-    const updatedUser = await GetUser(payload.id)
-    setUser(updatedUser)
+    const user = await GetUser(payload.id)
+    setUser(user)
     toggleEditor(false)
   }
 
@@ -161,15 +186,6 @@ function App() {
     localStorage.clear()
   }
 
-  const checkToken = async () => {
-    const payload = await CheckSession()
-    setPayload(payload)
-    const user = await GetUser(payload.id)
-    setUser(user)
-    const goals = await GetUserGoals(payload.id)
-    setGoals(goals)
-  }
-
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -225,6 +241,8 @@ function App() {
               onSubmitPassword={onSubmitPassword}
               destroyAccount={destroyAccount}
               goals={goals}
+              addDay={addDay}
+              minusDay={minusDay}
             />
           }
         />

@@ -15,7 +15,9 @@ const ProfilePage = ({
   onChangePassword,
   onSubmitPassword,
   destroyAccount,
-  goals
+  goals,
+  addDay,
+  minusDay
 }) => {
   let img
   let profileBox
@@ -58,7 +60,9 @@ const ProfilePage = ({
   ) : null
 
   let goalTrackers = goals ? (
-    goals.map((goal) => <Goals key={goal.id} goal={goal} />)
+    goals.map((goal) => (
+      <Goals key={goal.id} goal={goal} addDay={addDay} minusDay={minusDay} />
+    ))
   ) : (
     <h2>You have no goals currently!</h2>
   )
