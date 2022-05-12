@@ -1,4 +1,5 @@
 import UserInfoEditor from '../components/UserInfoEditor'
+import PasswordEditor from '../components/PasswordEditor'
 
 const ProfilePage = ({
   user,
@@ -22,7 +23,7 @@ const ProfilePage = ({
       <div>
         <img src={img} alt="profile" width="500px"></img>
         <h1>{user.name}</h1>
-        <button onClick={showEditor}>Edit Info</button>
+        <button onClick={showEditor}>EDIT INFO</button>
       </div>
     )
   }
