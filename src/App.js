@@ -122,7 +122,6 @@ function App() {
     setUser(user)
     const goals = await GetUserGoals(payload.id)
     setGoals(goals)
-    console.log(goals)
     navigate(`/profile/${payload.id}`)
   }
 
@@ -167,6 +166,8 @@ function App() {
     setPayload(payload)
     const user = await GetUser(payload.id)
     setUser(user)
+    const goals = await GetUserGoals(payload.id)
+    setGoals(goals)
   }
 
   useEffect(() => {
