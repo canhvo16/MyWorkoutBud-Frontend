@@ -26,3 +26,12 @@ export const MinusDaysCompleted = async (id) => {
     throw error
   }
 }
+
+export const CreateGoal = async (data) => {
+  try {
+    const res = await Client.post('/goalTracker/create', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

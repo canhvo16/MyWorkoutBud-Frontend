@@ -18,7 +18,12 @@ const ProfilePage = ({
   destroyAccount,
   goals,
   addDay,
-  minusDay
+  minusDay,
+  goalTrackerForm,
+  showGoalTrackerForm,
+  goalBody,
+  onChangeGoal,
+  onSubmitGoal
 }) => {
   let img
   let profileBox
@@ -68,6 +73,14 @@ const ProfilePage = ({
     <h2>You have no goals currently!</h2>
   )
 
+  let goalForm = goalTrackerForm ? (
+    <CreateGoal
+      goalBody={goalBody}
+      onChangeGoal={onChangeGoal}
+      onSubmitGoal={onSubmitGoal}
+    />
+  ) : null
+
   return (
     <div>
       <div>
@@ -77,7 +90,8 @@ const ProfilePage = ({
       </div>
       <div>
         <div>
-          <button>Add A Goal Tracker</button>
+          <button onClick={showGoalTrackerForm}>Add A Goal Tracker</button>
+          {goalForm}
         </div>
         <div>{goalTrackers}</div>
       </div>

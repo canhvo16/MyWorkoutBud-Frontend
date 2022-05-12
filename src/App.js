@@ -14,7 +14,8 @@ import {
 import {
   GetUserGoals,
   AddDaysCompleted,
-  MinusDaysCompleted
+  MinusDaysCompleted,
+  CreateGoal
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -39,6 +40,14 @@ function App() {
     password: '',
     confirmPassword: ''
   })
+  const [goalBody, setGoalBody] = useState({
+    name: '',
+    description: '',
+    duration: '',
+    daysCompleted: 0,
+    completed: false,
+    userId: null
+  })
   const [editor, toggleEditor] = useState(false)
   const [passwordForm, togglePasswordForm] = useState(false)
   const [userEditor, setUserEditor] = useState({
@@ -52,6 +61,7 @@ function App() {
     newPassword: ''
   })
   const [goals, setGoals] = useState(null)
+  const [goalTrackerForm, toggleGoalTrackerForm] = useState(false)
 
   const checkToken = async () => {
     const payload = await CheckSession()
@@ -85,6 +95,29 @@ function App() {
       localStorage.clear()
       navigate('/')
     }
+  }
+
+  const showGoalTrackerForm = () => {
+    toggleGoalTrackerForm(!goalTrackerForm)
+  }
+
+  const onChangeGoal = (e) => {
+    setGoalBody({
+      ...goalBody,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const onSubmitGoal = async (e) => {
+    e.preventDefault()
+    if (payload) {
+      setGoalBody({ ...goalBody, userId: payload.id })
+    }
+    console.log(goalBody.userId)
+    await CreateGoal(goalBody)
+    toggleGoalTrackerForm(false)
+    const goals = await GetUserGoals(payload.id)
+    setGoals(goals)
   }
 
   const onChangePassword = (e) => {
@@ -243,6 +276,11 @@ function App() {
               goals={goals}
               addDay={addDay}
               minusDay={minusDay}
+              goalTrackerForm={goalTrackerForm}
+              showGoalTrackerForm={showGoalTrackerForm}
+              goalBody={goalBody}
+              onChangeGoal={onChangeGoal}
+              onSubmitGoal={onSubmitGoal}
             />
           }
         />
