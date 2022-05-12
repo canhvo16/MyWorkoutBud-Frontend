@@ -46,7 +46,6 @@ function App() {
     setPayload(payload)
     const user = await GetUser(payload.id)
     setUser(user)
-    console.log(user)
     navigate(`/profile/${payload.id}`)
   }
 
@@ -91,7 +90,6 @@ function App() {
     setPayload(payload)
     const user = await GetUser(payload.id)
     setUser(user)
-    console.log(user)
   }
 
   useEffect(() => {
@@ -132,7 +130,7 @@ function App() {
             />
           }
         />
-        <Route path="/profile/:id" element={<ProfilePage />} />
+        <Route path="/profile/:id" element={<ProfilePage user={user} />} />
         <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
         <Route path="/addWorkout" element={<AddWorkoutPage />} />
       </Routes>
