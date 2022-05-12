@@ -7,7 +7,8 @@ import {
   RegisterUser,
   CheckSession,
   GetUser,
-  UpdateInfo
+  UpdateInfo,
+  UpdatePassword
 } from './services/Auth'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -33,11 +34,38 @@ function App() {
     confirmPassword: ''
   })
   const [editor, toggleEditor] = useState(false)
+  const [passwordForm, togglePasswordForm] = useState(false)
   const [userEditor, setUserEditor] = useState({
     email: '',
     name: '',
     photo: ''
   })
+  const [passwordEditor, setPasswordEditor] = useState({
+    email: '',
+    oldPassword: '',
+    newPassword: ''
+  })
+
+  const onChangePassword = (e) => {
+    setPasswordEditor({
+      ...passwordEditor,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const onSubmitPassword = async (e) => {
+    e.preventDefault()
+    await UpdatePassword(passwordEditor)
+    setPasswordEditor({ email: '', oldPassword: '', newPassword: '' })
+    togglePasswordForm(false)
+  }
+
+  const showPasswordForm = () => {
+    togglePasswordForm(!passwordForm)
+    if (editor) {
+      toggleEditor(false)
+    }
+  }
 
   const onChangeUserInfo = (e) => {
     setUserEditor({
@@ -57,6 +85,9 @@ function App() {
 
   const showEditor = () => {
     toggleEditor(!editor)
+    if (passwordForm) {
+      togglePasswordForm(false)
+    }
   }
 
   const onChangeLogin = (e) => {
@@ -167,6 +198,11 @@ function App() {
               userEditor={userEditor}
               onChangeUserInfo={onChangeUserInfo}
               onSubmitUserInfo={onSubmitUserInfo}
+              passwordForm={passwordForm}
+              showPasswordForm={showPasswordForm}
+              passwordEditor={passwordEditor}
+              onChangePassword={onChangePassword}
+              onSubmitPassword={onSubmitPassword}
             />
           }
         />

@@ -7,10 +7,17 @@ const ProfilePage = ({
   showEditor,
   userEditor,
   onChangeUserInfo,
-  onSubmitUserInfo
+  onSubmitUserInfo,
+  passwordForm,
+  showPasswordForm,
+  passwordEditor,
+  onChangePassword,
+  onSubmitPassword
 }) => {
   let img
   let profileBox
+  let infoText = editor ? 'HIDE' : 'EDIT INFO'
+  let passwordText = passwordForm ? 'HIDE' : 'CHANGE PASSWORD'
 
   if (user) {
     if (user.photo) {
@@ -19,11 +26,13 @@ const ProfilePage = ({
       img =
         'https://www.pngitem.com/pimgs/m/121-1210928_bodybuilding-and-dumbbells-vector-image-illustration-transparent-background.png'
     }
+
     profileBox = (
       <div>
         <img src={img} alt="profile" width="500px"></img>
         <h1>{user.name}</h1>
-        <button onClick={showEditor}>EDIT INFO</button>
+        <button onClick={showEditor}>{infoText}</button>
+        <button onClick={showPasswordForm}>{passwordText}</button>
       </div>
     )
   }
@@ -36,10 +45,19 @@ const ProfilePage = ({
     />
   ) : null
 
+  let passwordBox = passwordForm ? (
+    <PasswordEditor
+      passwordEditor={passwordEditor}
+      onChangePassword={onChangePassword}
+      onSubmitPassword={onSubmitPassword}
+    />
+  ) : null
+
   return (
     <div>
       <div>{profileBox}</div>
       <div>{editorBox}</div>
+      <div>{passwordBox}</div>
     </div>
   )
 }

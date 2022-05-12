@@ -22,7 +22,7 @@ const LoginPage = ({ loginBody, onChangeLogin, onSubmitLogin }) => {
             onChange={onChangeLogin}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">LOGIN</button>
       </form>
     </div>
   )
