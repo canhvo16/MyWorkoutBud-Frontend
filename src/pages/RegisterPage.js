@@ -47,7 +47,7 @@ const RegisterPage = ({ registerBody, onChangeRegister, onSubmitRegister }) => {
             registerBody.confirmPassword !== registerBody.password
           }
         >
-          Sign Up
+          SIGN UP
         </button>
       </form>
     </div>

@@ -8,8 +8,10 @@ import {
   CheckSession,
   GetUser,
   UpdateInfo,
-  UpdatePassword
+  UpdatePassword,
+  DestroyAccount
 } from './services/Auth'
+import { GetUserGoals } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
@@ -45,6 +47,20 @@ function App() {
     oldPassword: '',
     newPassword: ''
   })
+  const [goals, setGoals] = useState(null)
+
+  const destroyAccount = async () => {
+    if (
+      window.confirm(
+        'This will permanently delete your account and all your data, are you sure you want to leave?'
+      )
+    ) {
+      await DestroyAccount(payload.id)
+      setPayload(null)
+      localStorage.clear()
+      navigate('/')
+    }
+  }
 
   const onChangePassword = (e) => {
     setPasswordEditor({
@@ -104,6 +120,9 @@ function App() {
     setPayload(payload)
     const user = await GetUser(payload.id)
     setUser(user)
+    const goals = await GetUserGoals(payload.id)
+    setGoals(goals)
+    console.log(goals)
     navigate(`/profile/${payload.id}`)
   }
 
@@ -203,6 +222,8 @@ function App() {
               passwordEditor={passwordEditor}
               onChangePassword={onChangePassword}
               onSubmitPassword={onSubmitPassword}
+              destroyAccount={destroyAccount}
+              goals={goals}
             />
           }
         />

@@ -1,5 +1,6 @@
 import UserInfoEditor from '../components/UserInfoEditor'
 import PasswordEditor from '../components/PasswordEditor'
+import Goals from '../components/Goals'
 
 const ProfilePage = ({
   user,
@@ -12,7 +13,9 @@ const ProfilePage = ({
   showPasswordForm,
   passwordEditor,
   onChangePassword,
-  onSubmitPassword
+  onSubmitPassword,
+  destroyAccount,
+  goals
 }) => {
   let img
   let profileBox
@@ -33,6 +36,7 @@ const ProfilePage = ({
         <h1>{user.name}</h1>
         <button onClick={showEditor}>{infoText}</button>
         <button onClick={showPasswordForm}>{passwordText}</button>
+        <button onClick={destroyAccount}>DELETE ACCOUNT</button>
       </div>
     )
   }
@@ -53,11 +57,20 @@ const ProfilePage = ({
     />
   ) : null
 
+  let goalTrackers = goals ? (
+    goals.map((goal) => <Goals key={goal.id} goal={goal} />)
+  ) : (
+    <h2>You have no goals currently!</h2>
+  )
+
   return (
     <div>
-      <div>{profileBox}</div>
-      <div>{editorBox}</div>
-      <div>{passwordBox}</div>
+      <div>
+        <div>{profileBox}</div>
+        <div>{editorBox}</div>
+        <div>{passwordBox}</div>
+      </div>
+      <div>{goalTrackers}</div>
     </div>
   )
 }
