@@ -1,11 +1,28 @@
-const UserInfoEditor = () => {
+const UserInfoEditor = ({ userEditor, onChangeUserInfo, onSubmitUserInfo }) => {
   return (
     <div>
-      <form>
-        <h1>Name</h1>
-        <input type="text" />
-        <h1>Photo</h1>
-        <input type="text" />
+      <form onSubmit={onSubmitUserInfo}>
+        <h3>Current Email</h3>
+        <input 
+          type="text" 
+          value={userEditor.email}
+          placeholder='Current Email'
+          onChange={onChangeUserInfo}
+        />
+        <h3>Update Name</h3>
+        <input 
+          type="text" 
+          value={userEditor.name}
+          placeholder='New Name'
+          onChange={onChangeUserInfo}
+        />
+        <h3>Update Photo</h3>
+        <input 
+          type="text" 
+          value={userEditor.photo}
+          placeholder="Photo URL"
+          onChange={onChangeUserInfo}
+        />
         <button>Submit Changes</button>
       </form>
     </div>

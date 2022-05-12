@@ -1,6 +1,13 @@
+import UserInfoEditor from '../components/UserInfoEditor'
 
-
-const ProfilePage = ({ user, editor, showEditor }) => {
+const ProfilePage = ({
+  user,
+  editor,
+  showEditor,
+  userEditor,
+  onChangeUserInfo,
+  onSubmitUserInfo
+}) => {
   let img
   let profileBox
 
@@ -13,15 +20,27 @@ const ProfilePage = ({ user, editor, showEditor }) => {
     }
     profileBox = (
       <div>
-        <img src={img} alt="profile"></img>
+        <img src={img} alt="profile" width="500px"></img>
         <h1>{user.name}</h1>
+        <button onClick={showEditor}>Edit Info</button>
       </div>
     )
   }
 
-  editorBox = editor ? 
+  let editorBox = editor ? (
+    <UserInfoEditor
+      userEditor={userEditor}
+      onChangeUserInfo={onChangeUserInfo}
+      onSubmitUserInfo={onSubmitUserInfo}
+    />
+  ) : null
 
-  return <div>{profileBox}</div>
+  return (
+    <div>
+      <div>{profileBox}</div>
+      <div>{editorBox}</div>
+    </div>
+  )
 }
 
 export default ProfilePage

@@ -32,6 +32,22 @@ function App() {
     confirmPassword: ''
   })
   const [editor, toggleEditor] = useState(false)
+  const [userEditor, setUserEditor] = useState({
+    email: '',
+    name: '',
+    photo: ''
+  })
+
+  const onChangeUserInfo = (e) => {
+    setUserEditor({
+      ...userEditor,
+      [e.target.name]: e.target.name
+    })
+  }
+
+  const onSubmitUserInfo = async (e) => {
+    e.preventDefault()
+  }
 
   const showEditor = () => {
     toggleEditor(!editor)
@@ -138,7 +154,14 @@ function App() {
         <Route
           path="/profile/:id"
           element={
-            <ProfilePage user={user} editor={editor} showEditor={showEditor} />
+            <ProfilePage
+              user={user}
+              editor={editor}
+              showEditor={showEditor}
+              userEditor={userEditor}
+              onChangeUserInfo={onChangeUserInfo}
+              onSubmitUserInfo={onSubmitUserInfo}
+            />
           }
         />
         <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
