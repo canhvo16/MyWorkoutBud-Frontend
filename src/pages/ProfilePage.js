@@ -1,4 +1,6 @@
-const ProfilePage = ({ user }) => {
+
+
+const ProfilePage = ({ user, editor, showEditor }) => {
   let img
   let profileBox
 
@@ -16,6 +18,8 @@ const ProfilePage = ({ user }) => {
       </div>
     )
   }
+
+  editorBox = editor ? 
 
   return <div>{profileBox}</div>
 }

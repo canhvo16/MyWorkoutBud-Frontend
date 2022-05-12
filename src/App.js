@@ -31,6 +31,11 @@ function App() {
     password: '',
     confirmPassword: ''
   })
+  const [editor, toggleEditor] = useState(false)
+
+  const showEditor = () => {
+    toggleEditor(!editor)
+  }
 
   const onChangeLogin = (e) => {
     setLoginBody({
@@ -130,7 +135,12 @@ function App() {
             />
           }
         />
-        <Route path="/profile/:id" element={<ProfilePage user={user} />} />
+        <Route
+          path="/profile/:id"
+          element={
+            <ProfilePage user={user} editor={editor} showEditor={showEditor} />
+          }
+        />
         <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
         <Route path="/addWorkout" element={<AddWorkoutPage />} />
       </Routes>
