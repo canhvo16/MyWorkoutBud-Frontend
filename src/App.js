@@ -2,7 +2,12 @@ import './style//App.css'
 import { Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { SignInUser, RegisterUser, CheckSession } from './services/Auth'
+import {
+  SignInUser,
+  RegisterUser,
+  CheckSession,
+  GetUser
+} from './services/Auth'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
@@ -14,6 +19,7 @@ import AddWorkoutPage from './pages/AddWorkoutPage'
 
 function App() {
   let navigate = useNavigate()
+  const [user, setUser] = useState(null)
   const [payload, setPayload] = useState(null)
   const [loginBody, setLoginBody] = useState({
     email: '',
@@ -38,6 +44,9 @@ function App() {
     const payload = await SignInUser(loginBody)
     setLoginBody({ email: '', password: '' })
     setPayload(payload)
+    const user = await GetUser(payload.id)
+    setUser(user)
+    console.log(user)
     navigate(`/profile/${payload.id}`)
   }
 
@@ -80,6 +89,9 @@ function App() {
   const checkToken = async () => {
     const payload = await CheckSession()
     setPayload(payload)
+    const user = await GetUser(payload.id)
+    setUser(user)
+    console.log(user)
   }
 
   useEffect(() => {

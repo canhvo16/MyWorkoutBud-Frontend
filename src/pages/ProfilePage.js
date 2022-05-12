@@ -1,4 +1,4 @@
-const ProfilePage = () => {
+const ProfilePage = ({ user }) => {
   return <div>ProfilePage</div>
 }
 
