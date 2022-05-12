@@ -68,6 +68,10 @@ function App() {
     }
   }
 
+  const registerButton = () => {
+    navigate('/register')
+  }
+
   const logout = () => {
     setPayload(null)
     localStorage.clear()
@@ -91,7 +95,10 @@ function App() {
         <NavBar payload={payload} logout={logout} />
       </header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={<HomePage registerButton={registerButton} />}
+        />
         <Route path="/about" element={<AboutPage />} />
         <Route
           path="/login"
