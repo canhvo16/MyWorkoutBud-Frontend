@@ -98,3 +98,30 @@ export const GetExerciseByMuscleGroup = async (id) => {
     throw error
   }
 }
+
+export const CreateWorkoutLog = async (data) => {
+  try {
+    const res = await Client.post('/workoutLog/create', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const GetWorkoutLogById = async (id) => {
+  try {
+    const res = await Client.get(`/workoutLog/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const GetAllMuscleGroups = async () => {
+  try {
+    const res = await Client.get(`/muscleGroup`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

@@ -18,7 +18,10 @@ import {
   CreateGoal,
   GetUserWorkoutLogs,
   GetExercises,
-  GetExerciseByMuscleGroup
+  GetExerciseByMuscleGroup,
+  CreateWorkoutLog,
+  GetWorkoutLogById,
+  GetAllMuscleGroups
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -77,6 +80,47 @@ function App() {
   const [shoulderExercises, setShoulderExercises] = useState(null)
   const [fullBodyExercises, setFullBodyExercises] = useState(null)
   const [muscleGroup, setMuscleGroup] = useState('All Exercises')
+  const [workoutLogBody, setWorkoutLogBody] = useState({
+    name: '',
+    notes: '',
+    userId: null
+  })
+  const [currentWorkoutLog, setCurrentWorkoutLog] = useState(null)
+  const [exerciseLogBody, setExerciseLogBody] = useState({
+    exerciseId: null,
+    workoutLogId: null
+  })
+  const [allMuscleGroups, setAllMuscleGroups] = useState(null)
+  const [muscleCards, toggleMuscleCards] = useState(false)
+
+  const showMuscleCards = () => {
+    toggleMuscleCards(!muscleCards)
+  }
+
+  const getAllMuscleGroups = async () => {
+    const allMuscleGroups = await GetAllMuscleGroups()
+    setAllMuscleGroups(allMuscleGroups)
+  }
+
+  const onChangeWorkoutLog = (e) => {
+    setWorkoutLogBody({
+      ...workoutLogBody,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const onSubmitWorkoutLog = async (e) => {
+    e.preventDefault()
+    if (payload) {
+      setWorkoutLogBody({ ...workoutLogBody, userId: payload.id })
+    }
+    const workoutLog = await CreateWorkoutLog(workoutLogBody)
+    setWorkoutLogBody({ name: '', notes: '', userId: null })
+    toggleWorkoutForm(false)
+    const currentLog = await GetWorkoutLogById(workoutLog.id)
+    setCurrentWorkoutLog(currentLog)
+    console.log(currentLog)
+  }
 
   const chooseMuscleGroup = (e) => {
     setMuscleGroup(e.target.value)
@@ -142,7 +186,6 @@ function App() {
     if (payload) {
       setGoalBody({ ...goalBody, userId: payload.id })
     }
-    console.log(goalBody.userId)
     await CreateGoal(goalBody)
     toggleGoalTrackerForm(false)
     const goals = await GetUserGoals(payload.id)
@@ -303,6 +346,7 @@ function App() {
     getFullBodyExercises()
     getLegExercises()
     getShoulderExercises()
+    getAllMuscleGroups()
   }, [])
 
   return (
@@ -385,6 +429,13 @@ function App() {
               fullBodyExercises={fullBodyExercises}
               muscleGroup={muscleGroup}
               chooseMuscleGroup={chooseMuscleGroup}
+              workoutLogBody={workoutLogBody}
+              onChangeWorkoutLog={onChangeWorkoutLog}
+              onSubmitWorkoutLog={onSubmitWorkoutLog}
+              currentWorkoutLog={currentWorkoutLog}
+              allMuscleGroups={allMuscleGroups}
+              muscleCards={muscleCards}
+              showMuscleCards={showMuscleCards}
             />
           }
         />

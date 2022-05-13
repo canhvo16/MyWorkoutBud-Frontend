@@ -1,4 +1,6 @@
 import Exercise from '../components/Exercise'
+import WorkoutLog from '../components/WorkoutLog'
+import MuscleGroupCard from '../components/MuscleGroupCard'
 
 const AddWorkoutPage = ({
   viewExercises,
@@ -14,40 +16,47 @@ const AddWorkoutPage = ({
   shoulderExercises,
   fullBodyExercises,
   muscleGroup,
-  chooseMuscleGroup
+  chooseMuscleGroup,
+  workoutLogBody,
+  onChangeWorkoutLog,
+  onSubmitWorkoutLog,
+  currentWorkoutLog,
+  allMuscleGroups,
+  muscleCards,
+  showMuscleCards
 }) => {
   let exercisegroup
 
   if (muscleGroup === 'All Exercises') {
-    exercisegroup = exercises.map((exercise) => (
+    exercisegroup = exercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Chest') {
-    exercisegroup = chestExercises.map((exercise) => (
+    exercisegroup = chestExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Back') {
-    exercisegroup = backExercises.map((exercise) => (
+    exercisegroup = backExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Legs') {
-    exercisegroup = legExercises.map((exercise) => (
+    exercisegroup = legExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Core/Abs') {
-    exercisegroup = coreExercises.map((exercise) => (
+    exercisegroup = coreExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Arms') {
-    exercisegroup = armExercises.map((exercise) => (
+    exercisegroup = armExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Shoulders') {
-    exercisegroup = shoulderExercises.map((exercise) => (
+    exercisegroup = shoulderExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   } else if (muscleGroup === 'Full Body') {
-    exercisegroup = fullBodyExercises.map((exercise) => (
+    exercisegroup = fullBodyExercises?.map((exercise) => (
       <Exercise exercise={exercise} key={exercise.id} />
     ))
   }
@@ -67,11 +76,56 @@ const AddWorkoutPage = ({
       <div>{exercisegroup}</div>
     </div>
   ) : null
+
+  let form = workoutForm ? (
+    <div>
+      <form onSubmit={onSubmitWorkoutLog}>
+        <h3>Name</h3>
+        <input
+          type="text"
+          name="name"
+          value={workoutLogBody.name}
+          onChange={onChangeWorkoutLog}
+        />
+        <h3>Notes</h3>
+        <input
+          type="text"
+          name="notes"
+          value={workoutLogBody.notes}
+          onChange={onChangeWorkoutLog}
+        />
+        <button>Create Workout Log</button>
+      </form>
+    </div>
+  ) : null
+
+  let currentLog = currentWorkoutLog ? (
+    <WorkoutLog workoutLog={currentWorkoutLog} />
+  ) : null
+
+  let addExercise = currentWorkoutLog ? (
+    <button onClick={showMuscleCards}>Add Exercise</button>
+  ) : null
+
+  let allMuscleCards = allMuscleGroups
+    ? allMuscleGroups.map((muscle) => (
+        <MuscleGroupCard key={muscle.id} muscle={muscle} />
+      ))
+    : null
+
+  let muscles = muscleCards ? allMuscleCards : null
+
   return (
     <div>
       <button onClick={showExercises}>View Exercises</button>
       <button onClick={showWorkoutForm}>Add Workout</button>
       <div>{workouts}</div>
+      <div>
+        {currentLog}
+        {addExercise}
+        {form}
+        {muscles}
+      </div>
     </div>
   )
 }
