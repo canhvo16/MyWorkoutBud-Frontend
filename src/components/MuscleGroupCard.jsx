@@ -1,6 +1,6 @@
-const MuscleGroupCard = ({ muscle }) => {
+const MuscleGroupCard = ({ muscle, showExerciseCards }) => {
   return (
-    <div>{muscle.name}</div>
+    <button onClick={() => showExerciseCards(muscle.id)}>{muscle.name}</button>
   )
 }
 

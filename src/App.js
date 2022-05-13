@@ -92,6 +92,15 @@ function App() {
   })
   const [allMuscleGroups, setAllMuscleGroups] = useState(null)
   const [muscleCards, toggleMuscleCards] = useState(false)
+  const [viewExerciseCards, toggleExerciseCards] = useState(false)
+  const [exerciseCards, setExerciseCards] = useState(null)
+
+  const showExerciseCards = async (id) => {
+    toggleExerciseCards(!viewExerciseCards)
+    showMuscleCards()
+    const exerciseCards = await GetExerciseByMuscleGroup(id)
+    setExerciseCards(exerciseCards)
+  }
 
   const showMuscleCards = () => {
     toggleMuscleCards(!muscleCards)
@@ -436,6 +445,9 @@ function App() {
               allMuscleGroups={allMuscleGroups}
               muscleCards={muscleCards}
               showMuscleCards={showMuscleCards}
+              viewExerciseCards={viewExerciseCards}
+              showExerciseCards={showExerciseCards}
+              exerciseCards={exerciseCards}
             />
           }
         />

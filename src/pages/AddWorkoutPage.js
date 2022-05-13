@@ -1,6 +1,7 @@
 import Exercise from '../components/Exercise'
 import WorkoutLog from '../components/WorkoutLog'
 import MuscleGroupCard from '../components/MuscleGroupCard'
+import ExerciseCard from '../components/ExerciseCard'
 
 const AddWorkoutPage = ({
   viewExercises,
@@ -23,7 +24,10 @@ const AddWorkoutPage = ({
   currentWorkoutLog,
   allMuscleGroups,
   muscleCards,
-  showMuscleCards
+  showMuscleCards,
+  viewExerciseCards,
+  showExerciseCards,
+  exerciseCards
 }) => {
   let exercisegroup
 
@@ -109,11 +113,21 @@ const AddWorkoutPage = ({
 
   let allMuscleCards = allMuscleGroups
     ? allMuscleGroups.map((muscle) => (
-        <MuscleGroupCard key={muscle.id} muscle={muscle} />
+        <MuscleGroupCard
+          key={muscle.id}
+          muscle={muscle}
+          showExerciseCards={showExerciseCards}
+        />
       ))
     : null
 
   let muscles = muscleCards ? allMuscleCards : null
+
+  let eCards = viewExerciseCards
+    ? exerciseCards?.map((exerciseCard) => (
+        <ExerciseCard key={exerciseCard.id} exerciseCard={exerciseCard} />
+      ))
+    : null
 
   return (
     <div>
@@ -125,6 +139,7 @@ const AddWorkoutPage = ({
         {addExercise}
         {form}
         {muscles}
+        <div>{eCards}</div>
       </div>
     </div>
   )
