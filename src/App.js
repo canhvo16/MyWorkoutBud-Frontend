@@ -74,7 +74,6 @@ function App() {
     setGoals(goals)
     const workoutLogs = await GetUserWorkoutLogs(payload.id)
     setWorkoutLogs(workoutLogs)
-    console.log(workoutLogs)
   }
 
   const addDay = async (id) => {

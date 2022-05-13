@@ -44,3 +44,12 @@ export const GetUserWorkoutLogs = async (id) => {
     throw error
   }
 }
+
+export const GetUserExerciseLogs = async (id) => {
+  try {
+    const res = await Client.get(`exerciseLog/workoutLog/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
