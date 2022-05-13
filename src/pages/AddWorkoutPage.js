@@ -4,14 +4,21 @@ const AddWorkoutPage = ({
   viewExercises,
   showExercises,
   workoutForm,
-  showWorkoutForm
+  showWorkoutForm,
+  exercises
 }) => {
-  let exercises = viewExercises ? <Exercise /> : null
+  let workouts = viewExercises ? (
+    <div>
+      {exercises.map((exercise) => (
+        <Exercise />
+      ))}
+    </div>
+  ) : null
   return (
     <div>
-      <button>View Exercises</button>
-      <button>Add Workout</button>
-      <div>{exercises}</div>
+      <button onClick={showExercises}>View Exercises</button>
+      <button onClick={showWorkoutForm}>Add Workout</button>
+      <div>{workouts}</div>
     </div>
   )
 }

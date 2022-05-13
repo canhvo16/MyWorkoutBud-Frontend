@@ -321,6 +321,7 @@ function App() {
               showExercises={showExercises}
               workoutForm={workoutForm}
               showWorkoutForm={showWorkoutForm}
+              exercises={exercises}
             />
           }
         />
