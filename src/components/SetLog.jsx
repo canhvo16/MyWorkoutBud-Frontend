@@ -1,6 +1,9 @@
-const SetLog = () => {
+const SetLog = ({ setLog }) => {
+  console.log('', setLog)
   return (
-    <div>SetLog</div>
+    <div>
+      <p>{setLog.weight}{setLog.metric} x {setLog.repetitions}</p>
+    </div>
   )
 }
 
