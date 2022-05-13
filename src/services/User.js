@@ -53,3 +53,30 @@ export const GetUserExerciseLogs = async (id) => {
     throw error
   }
 }
+
+export const GetUserSetLogs = async (id) => {
+  try {
+    const res = await Client.get(`set/exerciseLog/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const GetUserExercise = async (id) => {
+  try {
+    const res = await Client.get(`exercise/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const GetMuscleGroup = async (id) => {
+  try {
+    const res = await Client.get(`/muscleGroup/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
