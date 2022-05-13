@@ -15,7 +15,8 @@ import {
   GetUserGoals,
   AddDaysCompleted,
   MinusDaysCompleted,
-  CreateGoal
+  CreateGoal,
+  GetUserWorkoutLogs
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -62,6 +63,7 @@ function App() {
   })
   const [goals, setGoals] = useState(null)
   const [goalTrackerForm, toggleGoalTrackerForm] = useState(false)
+  const [workoutLogs, setWorkoutLogs] = useState(null)
 
   const checkToken = async () => {
     const payload = await CheckSession()
@@ -70,6 +72,9 @@ function App() {
     setUser(user)
     const goals = await GetUserGoals(payload.id)
     setGoals(goals)
+    const workoutLogs = await GetUserWorkoutLogs(payload.id)
+    setWorkoutLogs(workoutLogs)
+    console.log(workoutLogs)
   }
 
   const addDay = async (id) => {
@@ -180,6 +185,8 @@ function App() {
     setUser(user)
     const goals = await GetUserGoals(payload.id)
     setGoals(goals)
+    const workoutLogs = await GetUserWorkoutLogs(payload.id)
+    setWorkoutLogs(workoutLogs)
     navigate(`/profile/${payload.id}`)
   }
 
@@ -284,7 +291,10 @@ function App() {
             />
           }
         />
-        <Route path="/workoutLogs" element={<WorkoutLogsPage />} />
+        <Route
+          path="/workoutLogs"
+          element={<WorkoutLogsPage workoutLogs={workoutLogs} />}
+        />
         <Route path="/addWorkout" element={<AddWorkoutPage />} />
       </Routes>
     </div>

@@ -35,3 +35,12 @@ export const CreateGoal = async (data) => {
     throw error
   }
 }
+
+export const GetUserWorkoutLogs = async (id) => {
+  try {
+    const res = await Client.get(`workoutLog/user/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

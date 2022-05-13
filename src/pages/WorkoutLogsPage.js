@@ -1,4 +1,4 @@
-const WorkoutLogsPage = () => {
+const WorkoutLogsPage = ({ workoutLogs }) => {
   return <div>WorkoutLogsPage</div>
 }
 
