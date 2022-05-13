@@ -1,6 +1,6 @@
-const Exercise = () => {
+const Exercise = ({ exercise }) => {
   return (
-    <div>Exercise</div>
+    <div>{exercise.name}</div>
   )
 }
 

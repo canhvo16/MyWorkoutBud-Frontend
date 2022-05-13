@@ -10,7 +10,7 @@ const AddWorkoutPage = ({
   let workouts = viewExercises ? (
     <div>
       {exercises.map((exercise) => (
-        <Exercise />
+        <Exercise exercise={exercise} key={exercise.id} />
       ))}
     </div>
   ) : null
