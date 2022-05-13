@@ -21,6 +21,16 @@ const ExerciseLog = ({ exerciseLog }) => {
 
   let logs = setLogs?.map(setLog => <SetLog key={setLog.id} setLog={setLog} />)
 
+  let exerciseName 
+  let muscleName
+
+  if (exercise) {
+    exerciseName = exercise.name
+  }
+  if(muscleGroup) {
+    muscleName = muscleGroup.name
+  }
+
   useEffect(() => {
     if (exerciseLog) {
       getSetLogs()
@@ -29,7 +39,8 @@ const ExerciseLog = ({ exerciseLog }) => {
   }, [])
   return (
     <div>
-      <h3>{exercise.name} - {muscleGroup.name}</h3>
+      <h3>{exerciseName}</h3>
+      <p>{muscleName}</p>
       <div>{logs}</div>
     </div>
   )
