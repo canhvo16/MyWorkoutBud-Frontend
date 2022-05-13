@@ -80,3 +80,12 @@ export const GetMuscleGroup = async (id) => {
     throw error
   }
 }
+
+export const GetExercises = async () => {
+  try {
+    const res = await Client.get('/exercise')
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

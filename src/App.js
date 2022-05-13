@@ -16,7 +16,8 @@ import {
   AddDaysCompleted,
   MinusDaysCompleted,
   CreateGoal,
-  GetUserWorkoutLogs
+  GetUserWorkoutLogs,
+  GetExercises
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -64,6 +65,17 @@ function App() {
   const [goals, setGoals] = useState(null)
   const [goalTrackerForm, toggleGoalTrackerForm] = useState(false)
   const [workoutLogs, setWorkoutLogs] = useState(null)
+  const [viewExercises, toggleViewExercises] = useState(false)
+  const [workoutForm, toggleWorkoutForm] = useState(false)
+  const [exercises, setExercises] = useState(null)
+
+  const showExercises = () => {
+    toggleViewExercises(!viewExercises)
+  }
+
+  const showWorkoutForm = () => {
+    toggleWorkoutForm(!workoutForm)
+  }
 
   const checkToken = async () => {
     const payload = await CheckSession()
@@ -225,11 +237,18 @@ function App() {
     localStorage.clear()
   }
 
+  const getExercises = async () => {
+    const exercises = await GetExercises()
+    setExercises(exercises)
+    console.log(exercises)
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       checkToken()
     }
+    getExercises()
   }, [])
 
   return (
@@ -294,7 +313,17 @@ function App() {
           path="/workoutLogs"
           element={<WorkoutLogsPage workoutLogs={workoutLogs} />}
         />
-        <Route path="/addWorkout" element={<AddWorkoutPage />} />
+        <Route
+          path="/addWorkout"
+          element={
+            <AddWorkoutPage
+              viewExercises={viewExercises}
+              showExercises={showExercises}
+              workoutForm={workoutForm}
+              showWorkoutForm={showWorkoutForm}
+            />
+          }
+        />
       </Routes>
     </div>
   )
