@@ -17,7 +17,8 @@ import {
   MinusDaysCompleted,
   CreateGoal,
   GetUserWorkoutLogs,
-  GetExercises
+  GetExercises,
+  GetExerciseByMuscleGroup
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -68,6 +69,18 @@ function App() {
   const [viewExercises, toggleViewExercises] = useState(false)
   const [workoutForm, toggleWorkoutForm] = useState(false)
   const [exercises, setExercises] = useState(null)
+  const [chestExercises, setChestExercises] = useState(null)
+  const [backExercises, setBackExercises] = useState(null)
+  const [legExercises, setLegExercises] = useState(null)
+  const [coreExercises, setCoreExercises] = useState(null)
+  const [armExercises, setArmExercises] = useState(null)
+  const [shoulderExercises, setShoulderExercises] = useState(null)
+  const [fullBodyExercises, setFullBodyExercises] = useState(null)
+  const [muscleGroup, setMuscleGroup] = useState('All Exercises')
+
+  const chooseMuscleGroup = (e) => {
+    setMuscleGroup(e.target.value)
+  }
 
   const showExercises = () => {
     toggleViewExercises(!viewExercises)
@@ -240,7 +253,41 @@ function App() {
   const getExercises = async () => {
     const exercises = await GetExercises()
     setExercises(exercises)
-    console.log(exercises)
+  }
+
+  const getChestExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(1)
+    setChestExercises(exercises)
+  }
+
+  const getBackExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(2)
+    setBackExercises(exercises)
+  }
+
+  const getLegExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(3)
+    setLegExercises(exercises)
+  }
+
+  const getCoreExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(4)
+    setCoreExercises(exercises)
+  }
+
+  const getArmExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(5)
+    setArmExercises(exercises)
+  }
+
+  const getShoulderExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(6)
+    setShoulderExercises(exercises)
+  }
+
+  const getFullBodyExercises = async () => {
+    const exercises = await GetExerciseByMuscleGroup(7)
+    setFullBodyExercises(exercises)
   }
 
   useEffect(() => {
@@ -249,6 +296,13 @@ function App() {
       checkToken()
     }
     getExercises()
+    getArmExercises()
+    getBackExercises()
+    getChestExercises()
+    getCoreExercises()
+    getFullBodyExercises()
+    getLegExercises()
+    getShoulderExercises()
   }, [])
 
   return (
@@ -322,6 +376,15 @@ function App() {
               workoutForm={workoutForm}
               showWorkoutForm={showWorkoutForm}
               exercises={exercises}
+              chestExercises={chestExercises}
+              backExercises={backExercises}
+              legExercises={legExercises}
+              coreExercises={coreExercises}
+              armExercises={armExercises}
+              shoulderExercises={shoulderExercises}
+              fullBodyExercises={fullBodyExercises}
+              muscleGroup={muscleGroup}
+              chooseMuscleGroup={chooseMuscleGroup}
             />
           }
         />
