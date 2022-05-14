@@ -2,7 +2,7 @@ import ExerciseLog from "./ExerciseLog"
 import { GetUserExerciseLogs } from "../services/User"
 import { useEffect, useState } from "react"
 
-const WorkoutLog = ({ workoutLog }) => {
+const WorkoutLog = ({ workoutLog, destroyWorkoutLog }) => {
   const [exerciseLogs, setExerciseLogs] = useState(null)
 
   const getExerciseLogs = async () => {
@@ -28,6 +28,7 @@ const WorkoutLog = ({ workoutLog }) => {
       <div>
         {logs}
       </div>
+      <button onClick={() => destroyWorkoutLog(workoutLog.id)}>Delete</button>
     </div>
   )
 }

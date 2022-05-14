@@ -24,7 +24,8 @@ import {
   GetAllMuscleGroups,
   CreateExerciseLog,
   CreateSetLog,
-  GetExerciseLogById
+  GetExerciseLogById,
+  DestroyWorkoutLog
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -101,6 +102,12 @@ function App() {
     repetitions: null,
     duration: null
   })
+
+  const destroyWorkoutLog = async (id) => {
+    await DestroyWorkoutLog(id)
+    const workoutLogs = await GetUserWorkoutLogs(payload.id)
+    setWorkoutLogs(workoutLogs.reverse())
+  }
 
   const finishWorkout = () => {
     setCurrentWorkoutLog(null)
@@ -209,7 +216,6 @@ function App() {
     setGoals(goals)
     const workoutLogs = await GetUserWorkoutLogs(payload.id)
     setWorkoutLogs(workoutLogs.reverse())
-    console.log(workoutLogs)
   }
 
   const addDay = async (id) => {
@@ -477,7 +483,12 @@ function App() {
           />
           <Route
             path="/workoutLogs"
-            element={<WorkoutLogsPage workoutLogs={workoutLogs} />}
+            element={
+              <WorkoutLogsPage
+                workoutLogs={workoutLogs}
+                destroyWorkoutLog={destroyWorkoutLog}
+              />
+            }
           />
           <Route
             path="/addWorkout"

@@ -152,3 +152,12 @@ export const GetExerciseLogById = async (id) => {
     throw error
   }
 }
+
+export const DestroyWorkoutLog = async (id) => {
+  try {
+    const res = await Client.delete(`/workoutLog/destroy/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
