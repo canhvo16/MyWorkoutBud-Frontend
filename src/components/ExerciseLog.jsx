@@ -36,7 +36,7 @@ const ExerciseLog = ({ exerciseLog }) => {
       getSetLogs()
       getExercise()
     }
-  }, [])
+  }, [exerciseLog])
   return (
     <div>
       <h3>{exerciseName}</h3>

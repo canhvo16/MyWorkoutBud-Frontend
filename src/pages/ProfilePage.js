@@ -93,7 +93,10 @@ const ProfilePage = ({
           <button onClick={showGoalTrackerForm}>Add A Goal Tracker</button>
           {goalForm}
         </div>
-        <div>{goalTrackers}</div>
+        <div>
+          <h2>Ongoing Goals</h2>
+          {goalTrackers}
+        </div>
       </div>
     </div>
   )
