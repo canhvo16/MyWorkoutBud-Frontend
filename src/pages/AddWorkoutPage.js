@@ -28,7 +28,12 @@ const AddWorkoutPage = ({
   viewExerciseCards,
   showExerciseCards,
   exerciseCards,
-  chooseExercise
+  chooseExercise,
+  setLogForm,
+  showSetLogForm,
+  setLogBody,
+  onChangeSetLog,
+  onSubmitSetLog
 }) => {
   let exercisegroup
 
@@ -109,7 +114,46 @@ const AddWorkoutPage = ({
   ) : null
 
   let addExercise = currentWorkoutLog ? (
-    <button onClick={showMuscleCards}>Add Exercise</button>
+    <div>
+      <button onClick={showMuscleCards}>Add Exercise</button>
+      <button onClick={showSetLogForm}>Add Set</button>
+    </div>
+  ) : null
+
+  let setForm = setLogForm ? (
+    <div>
+      <form onSubmit={onSubmitSetLog}>
+        <h3>Weight/Distance</h3>
+        <input
+          type="number"
+          name="weight"
+          value={setLogBody.weight}
+          onChange={onChangeSetLog}
+        />
+        <h3>Metric</h3>
+        <input
+          type="text"
+          name="metric"
+          value={setLogBody.metric}
+          onChange={onChangeSetLog}
+        />
+        <h3>Repetitions</h3>
+        <input
+          type="number"
+          name="repetitions"
+          value={setLogBody.repetitions}
+          onChange={onChangeSetLog}
+        />
+        <h3>Duration</h3>
+        <input
+          type="number"
+          name="duration"
+          value={setLogBody.duration}
+          onChange={onChangeSetLog}
+        />
+        <button>Create Set Log</button>
+      </form>
+    </div>
   ) : null
 
   let allMuscleCards = allMuscleGroups
@@ -142,6 +186,7 @@ const AddWorkoutPage = ({
       <div>
         {currentLog}
         {addExercise}
+        {setForm}
         {form}
         {muscles}
         <div>{eCards}</div>

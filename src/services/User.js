@@ -134,3 +134,12 @@ export const CreateExerciseLog = async (data) => {
     throw error
   }
 }
+
+export const CreateSetLog = async (data) => {
+  try {
+    const res = await Client.post('/set/create', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

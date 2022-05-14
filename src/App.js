@@ -22,7 +22,8 @@ import {
   CreateWorkoutLog,
   GetWorkoutLogById,
   GetAllMuscleGroups,
-  CreateExerciseLog
+  CreateExerciseLog,
+  CreateSetLog
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -92,11 +93,51 @@ function App() {
   const [viewExerciseCards, toggleExerciseCards] = useState(false)
   const [exerciseCards, setExerciseCards] = useState(null)
   const [currentExerciseLog, setCurrentExerciseLog] = useState(null)
+  const [setLogForm, toggleSetLogForm] = useState(false)
+  const [setLogBody, setSetLogBody] = useState({
+    weight: null,
+    metric: '',
+    repetitions: null,
+    duration: null
+  })
+
+  const onChangeSetLog = (e) => {
+    setSetLogBody({ ...setLogBody, [e.target.name]: e.target.value })
+  }
+
+  const onSubmitSetLog = async (e) => {
+    e.preventDefault()
+    let setBody = {
+      weight: setLogBody.weight,
+      metric: setLogBody.metric,
+      repetitions: setLogBody.repetitions,
+      duration: setLogBody.duration,
+      exerciseLogId: currentExerciseLog.id
+    }
+    await CreateSetLog(setBody)
+    await GetWorkoutLogById(currentWorkoutLog.id).then((e) =>
+      setCurrentWorkoutLog(e)
+    )
+    setSetLogBody({
+      weight: null,
+      metric: '',
+      repetitions: null,
+      duration: null
+    })
+    toggleSetLogForm(false)
+  }
+
+  const showSetLogForm = () => {
+    toggleSetLogForm(!setLogForm)
+  }
 
   const chooseExercise = async (id) => {
     let exerciseLogBody = { exerciseId: id, workoutLogId: currentWorkoutLog.id }
     await CreateExerciseLog(exerciseLogBody).then((e) =>
       setCurrentExerciseLog(e)
+    )
+    await GetWorkoutLogById(currentWorkoutLog.id).then((e) =>
+      setCurrentWorkoutLog(e)
     )
     toggleExerciseCards(false)
   }
@@ -456,6 +497,11 @@ function App() {
                 showExerciseCards={showExerciseCards}
                 exerciseCards={exerciseCards}
                 chooseExercise={chooseExercise}
+                setLogForm={setLogForm}
+                showSetLogForm={showSetLogForm}
+                setLogBody={setLogBody}
+                onChangeSetLog={onChangeSetLog}
+                onSubmitSetLog={onSubmitSetLog}
               />
             }
           />
