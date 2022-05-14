@@ -143,3 +143,12 @@ export const CreateSetLog = async (data) => {
     throw error
   }
 }
+
+export const GetExerciseLogById = async (id) => {
+  try {
+    const res = await Client.get(`/exerciseLog/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

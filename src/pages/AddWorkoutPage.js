@@ -33,7 +33,8 @@ const AddWorkoutPage = ({
   showSetLogForm,
   setLogBody,
   onChangeSetLog,
-  onSubmitSetLog
+  onSubmitSetLog,
+  finishWorkout
 }) => {
   let exercisegroup
 
@@ -117,6 +118,7 @@ const AddWorkoutPage = ({
     <div>
       <button onClick={showMuscleCards}>Add Exercise</button>
       <button onClick={showSetLogForm}>Add Set</button>
+      <button onClick={finishWorkout}>Finish Workout</button>
     </div>
   ) : null
 

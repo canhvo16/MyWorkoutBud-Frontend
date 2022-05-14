@@ -23,7 +23,8 @@ import {
   GetWorkoutLogById,
   GetAllMuscleGroups,
   CreateExerciseLog,
-  CreateSetLog
+  CreateSetLog,
+  GetExerciseLogById
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -101,6 +102,12 @@ function App() {
     duration: null
   })
 
+  const finishWorkout = () => {
+    setCurrentWorkoutLog(null)
+    setCurrentExerciseLog(null)
+    navigate('/workoutLogs')
+  }
+
   const onChangeSetLog = (e) => {
     setSetLogBody({ ...setLogBody, [e.target.name]: e.target.value })
   }
@@ -117,6 +124,9 @@ function App() {
     await CreateSetLog(setBody)
     await GetWorkoutLogById(currentWorkoutLog.id).then((e) =>
       setCurrentWorkoutLog(e)
+    )
+    await GetExerciseLogById(currentExerciseLog.id).then((e) =>
+      setCurrentExerciseLog(e)
     )
     setSetLogBody({
       weight: null,
@@ -198,7 +208,8 @@ function App() {
     const goals = await GetUserGoals(payload.id)
     setGoals(goals)
     const workoutLogs = await GetUserWorkoutLogs(payload.id)
-    setWorkoutLogs(workoutLogs)
+    setWorkoutLogs(workoutLogs.reverse())
+    console.log(workoutLogs)
   }
 
   const addDay = async (id) => {
@@ -309,7 +320,7 @@ function App() {
     const goals = await GetUserGoals(payload.id)
     setGoals(goals)
     const workoutLogs = await GetUserWorkoutLogs(payload.id)
-    setWorkoutLogs(workoutLogs)
+    setWorkoutLogs(workoutLogs.reverse())
     navigate(`/profile/${payload.id}`)
   }
 
@@ -502,6 +513,7 @@ function App() {
                 setLogBody={setLogBody}
                 onChangeSetLog={onChangeSetLog}
                 onSubmitSetLog={onSubmitSetLog}
+                finishWorkout={finishWorkout}
               />
             }
           />
