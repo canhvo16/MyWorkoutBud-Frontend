@@ -21,7 +21,8 @@ import {
   GetExerciseByMuscleGroup,
   CreateWorkoutLog,
   GetWorkoutLogById,
-  GetAllMuscleGroups
+  GetAllMuscleGroups,
+  CreateExerciseLog
 } from './services/User'
 import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
@@ -86,14 +87,19 @@ function App() {
     userId: null
   })
   const [currentWorkoutLog, setCurrentWorkoutLog] = useState(null)
-  const [exerciseLogBody, setExerciseLogBody] = useState({
-    exerciseId: null,
-    workoutLogId: null
-  })
   const [allMuscleGroups, setAllMuscleGroups] = useState(null)
   const [muscleCards, toggleMuscleCards] = useState(false)
   const [viewExerciseCards, toggleExerciseCards] = useState(false)
   const [exerciseCards, setExerciseCards] = useState(null)
+  const [currentExerciseLog, setCurrentExerciseLog] = useState(null)
+
+  const chooseExercise = async (id) => {
+    let exerciseLogBody = { exerciseId: id, workoutLogId: currentWorkoutLog.id }
+    await CreateExerciseLog(exerciseLogBody).then((e) =>
+      setCurrentExerciseLog(e)
+    )
+    toggleExerciseCards(false)
+  }
 
   const showExerciseCards = async (id) => {
     toggleExerciseCards(!viewExerciseCards)
@@ -120,15 +126,15 @@ function App() {
 
   const onSubmitWorkoutLog = async (e) => {
     e.preventDefault()
-    if (payload) {
-      setWorkoutLogBody({ ...workoutLogBody, userId: payload.id })
+    let banana = {
+      userId: payload.id,
+      name: workoutLogBody.name,
+      notes: workoutLogBody.notes
     }
-    const workoutLog = await CreateWorkoutLog(workoutLogBody)
+    const workoutLog = await CreateWorkoutLog(banana)
     setWorkoutLogBody({ name: '', notes: '', userId: null })
     toggleWorkoutForm(false)
-    const currentLog = await GetWorkoutLogById(workoutLog.id)
-    setCurrentWorkoutLog(currentLog)
-    console.log(currentLog)
+    await GetWorkoutLogById(workoutLog.id).then((e) => setCurrentWorkoutLog(e))
   }
 
   const chooseMuscleGroup = (e) => {
@@ -363,95 +369,98 @@ function App() {
       <header className="header">
         <NavBar payload={payload} logout={logout} />
       </header>
-      <Routes>
-        <Route
-          path="/"
-          element={<HomePage registerButton={registerButton} />}
-        />
-        <Route path="/about" element={<AboutPage />} />
-        <Route
-          path="/login"
-          element={
-            <LoginPage
-              loginBody={loginBody}
-              onChangeLogin={onChangeLogin}
-              onSubmitLogin={onSubmitLogin}
-            />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <RegisterPage
-              registerBody={registerBody}
-              onChangeRegister={onChangeRegister}
-              onSubmitRegister={onSubmitRegister}
-            />
-          }
-        />
-        <Route
-          path="/profile/:id"
-          element={
-            <ProfilePage
-              user={user}
-              editor={editor}
-              showEditor={showEditor}
-              userEditor={userEditor}
-              onChangeUserInfo={onChangeUserInfo}
-              onSubmitUserInfo={onSubmitUserInfo}
-              passwordForm={passwordForm}
-              showPasswordForm={showPasswordForm}
-              passwordEditor={passwordEditor}
-              onChangePassword={onChangePassword}
-              onSubmitPassword={onSubmitPassword}
-              destroyAccount={destroyAccount}
-              goals={goals}
-              addDay={addDay}
-              minusDay={minusDay}
-              goalTrackerForm={goalTrackerForm}
-              showGoalTrackerForm={showGoalTrackerForm}
-              goalBody={goalBody}
-              onChangeGoal={onChangeGoal}
-              onSubmitGoal={onSubmitGoal}
-            />
-          }
-        />
-        <Route
-          path="/workoutLogs"
-          element={<WorkoutLogsPage workoutLogs={workoutLogs} />}
-        />
-        <Route
-          path="/addWorkout"
-          element={
-            <AddWorkoutPage
-              viewExercises={viewExercises}
-              showExercises={showExercises}
-              workoutForm={workoutForm}
-              showWorkoutForm={showWorkoutForm}
-              exercises={exercises}
-              chestExercises={chestExercises}
-              backExercises={backExercises}
-              legExercises={legExercises}
-              coreExercises={coreExercises}
-              armExercises={armExercises}
-              shoulderExercises={shoulderExercises}
-              fullBodyExercises={fullBodyExercises}
-              muscleGroup={muscleGroup}
-              chooseMuscleGroup={chooseMuscleGroup}
-              workoutLogBody={workoutLogBody}
-              onChangeWorkoutLog={onChangeWorkoutLog}
-              onSubmitWorkoutLog={onSubmitWorkoutLog}
-              currentWorkoutLog={currentWorkoutLog}
-              allMuscleGroups={allMuscleGroups}
-              muscleCards={muscleCards}
-              showMuscleCards={showMuscleCards}
-              viewExerciseCards={viewExerciseCards}
-              showExerciseCards={showExerciseCards}
-              exerciseCards={exerciseCards}
-            />
-          }
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage registerButton={registerButton} />}
+          />
+          <Route path="/about" element={<AboutPage />} />
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                loginBody={loginBody}
+                onChangeLogin={onChangeLogin}
+                onSubmitLogin={onSubmitLogin}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RegisterPage
+                registerBody={registerBody}
+                onChangeRegister={onChangeRegister}
+                onSubmitRegister={onSubmitRegister}
+              />
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <ProfilePage
+                user={user}
+                editor={editor}
+                showEditor={showEditor}
+                userEditor={userEditor}
+                onChangeUserInfo={onChangeUserInfo}
+                onSubmitUserInfo={onSubmitUserInfo}
+                passwordForm={passwordForm}
+                showPasswordForm={showPasswordForm}
+                passwordEditor={passwordEditor}
+                onChangePassword={onChangePassword}
+                onSubmitPassword={onSubmitPassword}
+                destroyAccount={destroyAccount}
+                goals={goals}
+                addDay={addDay}
+                minusDay={minusDay}
+                goalTrackerForm={goalTrackerForm}
+                showGoalTrackerForm={showGoalTrackerForm}
+                goalBody={goalBody}
+                onChangeGoal={onChangeGoal}
+                onSubmitGoal={onSubmitGoal}
+              />
+            }
+          />
+          <Route
+            path="/workoutLogs"
+            element={<WorkoutLogsPage workoutLogs={workoutLogs} />}
+          />
+          <Route
+            path="/addWorkout"
+            element={
+              <AddWorkoutPage
+                viewExercises={viewExercises}
+                showExercises={showExercises}
+                workoutForm={workoutForm}
+                showWorkoutForm={showWorkoutForm}
+                exercises={exercises}
+                chestExercises={chestExercises}
+                backExercises={backExercises}
+                legExercises={legExercises}
+                coreExercises={coreExercises}
+                armExercises={armExercises}
+                shoulderExercises={shoulderExercises}
+                fullBodyExercises={fullBodyExercises}
+                muscleGroup={muscleGroup}
+                chooseMuscleGroup={chooseMuscleGroup}
+                workoutLogBody={workoutLogBody}
+                onChangeWorkoutLog={onChangeWorkoutLog}
+                onSubmitWorkoutLog={onSubmitWorkoutLog}
+                currentWorkoutLog={currentWorkoutLog}
+                allMuscleGroups={allMuscleGroups}
+                muscleCards={muscleCards}
+                showMuscleCards={showMuscleCards}
+                viewExerciseCards={viewExerciseCards}
+                showExerciseCards={showExerciseCards}
+                exerciseCards={exerciseCards}
+                chooseExercise={chooseExercise}
+              />
+            }
+          />
+        </Routes>
+      </main>
     </div>
   )
 }

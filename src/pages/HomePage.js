@@ -1,12 +1,14 @@
 const HomePage = ({ registerButton }) => {
   return (
-    <div>
-      <h1>MyWorkoutBuddy</h1>
-      <p>
+    <div className="homepage">
+      <h1 className="title">MyWorkoutBuddy</h1>
+      <p className="description">
         Want to exercise more consistently? Keep track of your workouts and goal
         with MyWorkoutBud!
       </p>
-      <button onClick={registerButton}>START AS A NEW USER</button>
+      <button className="startButton" onClick={registerButton}>
+        START AS A NEW USER
+      </button>
     </div>
   )
 }

@@ -1,6 +1,6 @@
-const ExerciseCard = ({ exerciseCard }) => {
+const ExerciseCard = ({ exerciseCard, chooseExercise }) => {
   return (
-    <button>{exerciseCard.name}</button>
+    <button onClick={() => chooseExercise(exerciseCard.id)}>{exerciseCard.name}</button>
   )
 }
 

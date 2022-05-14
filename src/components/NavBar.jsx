@@ -10,7 +10,7 @@ const NavBar = ({ payload, logout }) => {
   return (
     <div>
       {!payload && (
-        <div> 
+        <div className="nav"> 
           <NavLink to='/about'>About</NavLink>
           <NavLink to='/login'>Login</NavLink>
           <NavLink to='/register'>Register</NavLink>
@@ -18,7 +18,7 @@ const NavBar = ({ payload, logout }) => {
         )
       } 
       {payload && (
-        <div>
+        <div className="nav">
           <NavLink to={profileURL}>Profile</NavLink>
           <NavLink to='/workoutLogs'>Workout Logs</NavLink>
           <NavLink to='/addWorkout'>Add Workout</NavLink>

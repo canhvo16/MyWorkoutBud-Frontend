@@ -125,3 +125,12 @@ export const GetAllMuscleGroups = async () => {
     throw error
   }
 }
+
+export const CreateExerciseLog = async (data) => {
+  try {
+    const res = await Client.post('/exerciseLog/create', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

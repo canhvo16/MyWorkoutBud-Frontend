@@ -18,7 +18,7 @@ const WorkoutLog = ({ workoutLog }) => {
     if (workoutLog) {
       getExerciseLogs()
     }
-  }, [])
+  }, [workoutLog])
 
   return (
     <div>

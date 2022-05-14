@@ -1,11 +1,11 @@
 const LoginPage = ({ loginBody, onChangeLogin, onSubmitLogin }) => {
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="login">
+      <h1 className="title1">Login</h1>
       <hr />
-      <form onSubmit={onSubmitLogin}>
+      <form className="form-container" onSubmit={onSubmitLogin}>
         <div className="form">
-          <h3>Email</h3>
+          <h3 className="formTitle">Email</h3>
           <input
             type="email"
             placeholder="Email"
@@ -13,7 +13,7 @@ const LoginPage = ({ loginBody, onChangeLogin, onSubmitLogin }) => {
             value={loginBody.email}
             onChange={onChangeLogin}
           />
-          <h3>Password</h3>
+          <h3 className="formTitle">Password</h3>
           <input
             type="password"
             placeholder="Password"
@@ -22,7 +22,9 @@ const LoginPage = ({ loginBody, onChangeLogin, onSubmitLogin }) => {
             onChange={onChangeLogin}
           />
         </div>
-        <button type="submit">LOGIN</button>
+        <button className="loginButton" type="submit">
+          LOGIN
+        </button>
       </form>
     </div>
   )

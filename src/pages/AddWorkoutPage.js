@@ -27,7 +27,8 @@ const AddWorkoutPage = ({
   showMuscleCards,
   viewExerciseCards,
   showExerciseCards,
-  exerciseCards
+  exerciseCards,
+  chooseExercise
 }) => {
   let exercisegroup
 
@@ -125,7 +126,11 @@ const AddWorkoutPage = ({
 
   let eCards = viewExerciseCards
     ? exerciseCards?.map((exerciseCard) => (
-        <ExerciseCard key={exerciseCard.id} exerciseCard={exerciseCard} />
+        <ExerciseCard
+          key={exerciseCard.id}
+          exerciseCard={exerciseCard}
+          chooseExercise={chooseExercise}
+        />
       ))
     : null
 
