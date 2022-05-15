@@ -73,8 +73,12 @@ const AddWorkoutPage = ({
   }
 
   let workouts = viewExercises ? (
-    <div>
-      <select value={muscleGroup} onChange={chooseMuscleGroup}>
+    <div className="goal-container">
+      <select
+        className="dropDown"
+        value={muscleGroup}
+        onChange={chooseMuscleGroup}
+      >
         <option value="All Exercises">All Exercises</option>
         <option value="Chest">Chest</option>
         <option value="Back">Back</option>
@@ -84,28 +88,30 @@ const AddWorkoutPage = ({
         <option value="Shoulders">Shoulders</option>
         <option value="Full Body">Full Body</option>
       </select>
-      <div>{exercisegroup}</div>
+      <div className="exercise-box">{exercisegroup}</div>
     </div>
   ) : null
 
   let form = workoutForm ? (
     <div>
-      <form onSubmit={onSubmitWorkoutLog}>
-        <h3>Name</h3>
-        <input
-          type="text"
-          name="name"
-          value={workoutLogBody.name}
-          onChange={onChangeWorkoutLog}
-        />
-        <h3>Notes</h3>
-        <input
-          type="text"
-          name="notes"
-          value={workoutLogBody.notes}
-          onChange={onChangeWorkoutLog}
-        />
-        <button>Create Workout Log</button>
+      <form className="form-container" onSubmit={onSubmitWorkoutLog}>
+        <div className="form">
+          <h3 className="formTitle">Name</h3>
+          <input
+            type="text"
+            name="name"
+            value={workoutLogBody.name}
+            onChange={onChangeWorkoutLog}
+          />
+          <h3 className="formTitle">Notes</h3>
+          <input
+            type="text"
+            name="notes"
+            value={workoutLogBody.notes}
+            onChange={onChangeWorkoutLog}
+          />
+        </div>
+        <button className="loginButton">Create Workout Log</button>
       </form>
     </div>
   ) : null
@@ -115,45 +121,53 @@ const AddWorkoutPage = ({
   ) : null
 
   let addExercise = currentWorkoutLog ? (
-    <div>
-      <button onClick={showMuscleCards}>Add Exercise</button>
-      <button onClick={showSetLogForm}>Add Set</button>
-      <button onClick={finishWorkout}>Finish Workout</button>
+    <div className="buttons">
+      <button className="loginButton" onClick={showMuscleCards}>
+        Add Exercise
+      </button>
+      <button className="loginButton" onClick={showSetLogForm}>
+        Add Set
+      </button>
+      <button className="loginButton" onClick={finishWorkout}>
+        Finish Workout
+      </button>
     </div>
   ) : null
 
   let setForm = setLogForm ? (
     <div>
-      <form onSubmit={onSubmitSetLog}>
-        <h3>Weight/Distance</h3>
-        <input
-          type="number"
-          name="weight"
-          value={setLogBody.weight}
-          onChange={onChangeSetLog}
-        />
-        <h3>Metric</h3>
-        <input
-          type="text"
-          name="metric"
-          value={setLogBody.metric}
-          onChange={onChangeSetLog}
-        />
-        <h3>Repetitions</h3>
-        <input
-          type="number"
-          name="repetitions"
-          value={setLogBody.repetitions}
-          onChange={onChangeSetLog}
-        />
-        <h3>Duration</h3>
-        <input
-          type="number"
-          name="duration"
-          value={setLogBody.duration}
-          onChange={onChangeSetLog}
-        />
-        <button>Create Set Log</button>
+      <form className="form-container" onSubmit={onSubmitSetLog}>
+        <div className="form">
+          <h3 className="formTitle">Weight/Distance</h3>
+          <input
+            type="number"
+            name="weight"
+            value={setLogBody.weight}
+            onChange={onChangeSetLog}
+          />
+          <h3 className="formTitle">Metric</h3>
+          <input
+            type="text"
+            name="metric"
+            value={setLogBody.metric}
+            onChange={onChangeSetLog}
+          />
+          <h3 className="formTitle">Repetitions</h3>
+          <input
+            type="number"
+            name="repetitions"
+            value={setLogBody.repetitions}
+            onChange={onChangeSetLog}
+          />
+          <h3 className="formTitle">Duration</h3>
+          <input
+            type="number"
+            name="duration"
+            value={setLogBody.duration}
+            onChange={onChangeSetLog}
+          />
+        </div>
+        <button className="loginButton">Create Set Log</button>
       </form>
     </div>
   ) : null
@@ -182,16 +196,24 @@ const AddWorkoutPage = ({
 
   return (
     <div className="addWorkout">
-      <button onClick={showExercises}>View Exercises</button>
-      <button onClick={showWorkoutForm}>Add Workout</button>
+      <div className="button-box">
+        <button className="startButton" onClick={showExercises}>
+          View Exercises
+        </button>
+        <button className="startButton" onClick={showWorkoutForm}>
+          Add Workout
+        </button>
+      </div>
       <div>{workouts}</div>
       <div>
+        {form}
         {currentLog}
         {addExercise}
+        <div className="card-container">
+          {muscles}
+          {eCards}
+        </div>
         {setForm}
-        {form}
-        {muscles}
-        <div>{eCards}</div>
       </div>
     </div>
   )

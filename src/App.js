@@ -433,7 +433,9 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<HomePage registerButton={registerButton} />}
+            element={
+              <HomePage registerButton={registerButton} payload={payload} />
+            }
           />
           <Route path="/about" element={<AboutPage />} />
           <Route

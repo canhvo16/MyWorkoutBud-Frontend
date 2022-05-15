@@ -1,6 +1,6 @@
 const MuscleGroupCard = ({ muscle, showExerciseCards }) => {
   return (
-    <button onClick={() => showExerciseCards(muscle.id)}>{muscle.name}</button>
+    <button className="loginButton" onClick={() => showExerciseCards(muscle.id)}>{muscle.name}</button>
   )
 }
 

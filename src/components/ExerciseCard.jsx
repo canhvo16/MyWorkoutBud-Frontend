@@ -1,6 +1,6 @@
 const ExerciseCard = ({ exerciseCard, chooseExercise }) => {
   return (
-    <button onClick={() => chooseExercise(exerciseCard.id)}>{exerciseCard.name}</button>
+    <button className="loginButton" onClick={() => chooseExercise(exerciseCard.id)}>{exerciseCard.name}</button>
   )
 }
 

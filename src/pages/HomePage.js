@@ -1,14 +1,17 @@
-const HomePage = ({ registerButton }) => {
+const HomePage = ({ registerButton, payload }) => {
+  let button = payload ? null : (
+    <button className="startButton" onClick={registerButton}>
+      START AS A NEW USER
+    </button>
+  )
   return (
     <div className="homepage">
-      <h1 className="title">MyWorkoutBuddy</h1>
+      <h1 className="title">MyWorkoutBud</h1>
       <p className="description">
         Want to exercise more consistently? Keep track of your workouts and goal
         with MyWorkoutBud!
       </p>
-      <button className="startButton" onClick={registerButton}>
-        START AS A NEW USER
-      </button>
+      {button}
     </div>
   )
 }

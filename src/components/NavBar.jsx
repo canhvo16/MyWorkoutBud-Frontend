@@ -10,7 +10,7 @@ const NavBar = ({ payload, logout }) => {
   return (
     <div>
       {!payload && (
-        <div className="nav"> 
+        <div className="nav1"> 
           <NavLink to='/about'>About</NavLink>
           <NavLink to='/login'>Login</NavLink>
           <NavLink to='/register'>Register</NavLink>
@@ -19,10 +19,13 @@ const NavBar = ({ payload, logout }) => {
       } 
       {payload && (
         <div className="nav">
-          <NavLink to={profileURL}>Profile</NavLink>
-          <NavLink to='/workoutLogs'>Workout Logs</NavLink>
-          <NavLink to='/addWorkout'>Add Workout</NavLink>
-          <NavLink to='/' onClick={logout}>Logout</NavLink>
+          <h1 className="navTitle">MyWorkoutBud</h1>
+          <div className="navButtons">
+            <NavLink to={profileURL}>Profile</NavLink>
+            <NavLink to='/workoutLogs'>Workout Logs</NavLink>
+            <NavLink to='/addWorkout'>Add Workout</NavLink>
+            <NavLink to='/' onClick={logout}>Logout</NavLink>
+          </div>
         </div>
       )} 
     </div>

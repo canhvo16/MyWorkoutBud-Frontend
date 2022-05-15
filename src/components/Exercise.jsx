@@ -1,6 +1,6 @@
 const Exercise = ({ exercise }) => {
   return (
-    <div>{exercise.name}</div>
+    <div className="name goal-container">{exercise.name}</div>
   )
 }
 

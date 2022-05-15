@@ -11,9 +11,30 @@
 
 .nav {
   display: flex;
+  justify-content: space-between;
+  background-color: rgb(140, 140, 255);
+  border-bottom: 1px solid lightgray;
+}
+
+.nav1 {
+  display: flex;
   justify-content: flex-end;
   background-color: rgb(140, 140, 255);
   border-bottom: 1px solid lightgray;
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  background-color: rgb(140, 140, 255);
+}
+
+.navTitle {
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+  background-color: rgb(140, 140, 255);
+  color: white;
 }
 
 .homepage {
@@ -42,6 +63,8 @@
   font-size: 150%;
   font-weight: bolder;
   border: none;
+  border-radius: 10px;
+  margin-bottom: 1em;
 }
 
 .startButton:hover {
@@ -78,7 +101,7 @@ a:hover {
 .form-container {
   background-color: white;
   padding: 0 2em 2em 2em;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 10px;
 }
 
@@ -233,3 +256,47 @@ bottom: .5em;
   background-color: white;
   padding-bottom: 2em;
 }
+
+.addWorkout {
+  padding: 1em;
+}
+
+.button-box {
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.dropDown {
+  position: relative;
+  width: 10%;
+  background-color: rgb(140, 140, 255);
+  color: white;
+  padding: 5px;
+  margin-bottom: 1em;
+}
+
+.exercise-box {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
