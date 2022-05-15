@@ -109,9 +109,11 @@ function App() {
     setWorkoutLogs(workoutLogs.reverse())
   }
 
-  const finishWorkout = () => {
+  const finishWorkout = async () => {
     setCurrentWorkoutLog(null)
     setCurrentExerciseLog(null)
+    const workoutLogs = await GetUserWorkoutLogs(payload.id)
+    setWorkoutLogs(workoutLogs.reverse())
     navigate('/workoutLogs')
   }
 

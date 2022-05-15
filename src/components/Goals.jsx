@@ -4,12 +4,12 @@ const Goals = ({ goal, addDay, minusDay }) => {
   let completion = goal.completed ? "Congratualtions, goal completed!" : `Keep going, you have ${daysLeft} more to go!`
 
   return (
-    <div>
-      <h2>{goal.name}</h2>
-      <p>{goal.description}</p>
-      <p>Duration: {goal.duration} days</p>
-      <p>Days Completed: <button onClick={() => minusDay(goal.id)}>-</button> {goal.daysCompleted} <button onClick={() => addDay(goal.id)}>+</button></p>
-      <p>{completion}</p>
+    <div className="goal-container">
+      <h2 className="name">{goal.name}</h2>
+      <p className="name">{goal.description}</p>
+      <p className="name">Duration: {goal.duration} days</p>
+      <p className="name">Days Completed: <button className="goalButton" onClick={() => minusDay(goal.id)}>-</button> {goal.daysCompleted} <button className="goalButton" onClick={() => addDay(goal.id)}>+</button></p>
+      <p className="name">{completion}</p>
     </div>
   )
 }

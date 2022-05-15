@@ -1,8 +1,8 @@
 const AboutPage = () => {
   return (
-    <div>
-      <h1>About</h1>
-      <p>
+    <div className="about">
+      <h1 className="title">About</h1>
+      <p className="text">
         MyWorkoutBud is a Full-Stack PERN (PostgreSQL/Express/React/Node)
         application that is desgined to help users keep track of their workouts.
         As a a person that loves the gym and overall health, I wanted to create
@@ -15,11 +15,10 @@ const AboutPage = () => {
         Software Engineering Immersive program. This is my Unit 4 project and I
         built this application with the inspiration from MyFitnessPal.
       </p>
-      <div>
+      <div className="links">
         <a href="https://www.linkedin.com/in/canhvo16/">LinkedIn</a>
         <a href="https://github.com/canhvo16">GitHub</a>
         <a href="https://github.com/canhvo16/MyWorkoutBud-Frontend">
-          {' '}
           Frontend Repository
         </a>
         <a href="https://github.com/canhvo16/MyWorkoutBud-Backend">

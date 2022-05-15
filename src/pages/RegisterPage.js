@@ -1,11 +1,11 @@
 const RegisterPage = ({ registerBody, onChangeRegister, onSubmitRegister }) => {
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="login">
+      <h1 className="title1">Register</h1>
       <hr />
-      <form onSubmit={onSubmitRegister}>
-        <div>
-          <h3>Name</h3>
+      <form className="form-container" onSubmit={onSubmitRegister}>
+        <div className="form">
+          <h3 className="formTitle">Name</h3>
           <input
             type="text"
             placeholder="Name"
@@ -13,7 +13,7 @@ const RegisterPage = ({ registerBody, onChangeRegister, onSubmitRegister }) => {
             value={registerBody.name}
             onChange={onChangeRegister}
           />
-          <h3>Email</h3>
+          <h3 className="formTitle">Email</h3>
           <input
             type="email"
             placeholder="Email"
@@ -21,7 +21,7 @@ const RegisterPage = ({ registerBody, onChangeRegister, onSubmitRegister }) => {
             value={registerBody.email}
             onChange={onChangeRegister}
           />
-          <h3>Password</h3>
+          <h3 className="formTitle">Password</h3>
           <input
             type="password"
             placeholder="Password"
@@ -29,7 +29,7 @@ const RegisterPage = ({ registerBody, onChangeRegister, onSubmitRegister }) => {
             value={registerBody.password}
             onChange={onChangeRegister}
           />
-          <h3>Confirm Password</h3>
+          <h3 className="formTitle">Confirm Password</h3>
           <input
             type="password"
             placeholder="Confirm Password"
@@ -39,6 +39,7 @@ const RegisterPage = ({ registerBody, onChangeRegister, onSubmitRegister }) => {
           />
         </div>
         <button
+          className="loginButton"
           type="submit"
           disabled={
             !registerBody.name ||

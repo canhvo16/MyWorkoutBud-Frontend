@@ -181,7 +181,7 @@ const AddWorkoutPage = ({
     : null
 
   return (
-    <div>
+    <div className="addWorkout">
       <button onClick={showExercises}>View Exercises</button>
       <button onClick={showWorkoutForm}>Add Workout</button>
       <div>{workouts}</div>

@@ -9,7 +9,7 @@ const WorkoutLogsPage = ({ workoutLogs, destroyWorkoutLog }) => {
     />
   ))
 
-  return <div>{logs}</div>
+  return <div className="workoutLogs-container">{logs}</div>
 }
 
 export default WorkoutLogsPage

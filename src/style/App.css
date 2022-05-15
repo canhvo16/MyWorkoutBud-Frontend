@@ -4,6 +4,18 @@
   background-color: beige;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(140, 140, 255);
+  border-bottom: 1px solid lightgray;
+}
+
 .homepage {
   width: 100vw;
   height: 80vh;
@@ -36,13 +48,6 @@
   background-color: rgb(102, 102, 255);
 }
 
-.nav {
-  display: flex;
-  justify-content: flex-end;
-  background-color: rgb(140, 140, 255);
-  position: sticky;
-}
-
 a {
   background-color: rgb(140, 140, 255);
   padding: 20px;
@@ -72,17 +77,20 @@ a:hover {
 
 .form-container {
   background-color: white;
-  padding: 40px;
+  padding: 0 2em 2em 2em;
   border: 2px solid black;
   border-radius: 10px;
 }
 
 .formTitle {
   background-color: white;
+  padding-top: 1em;
 }
 
 input {
   background-color: white;
+  border-radius: 5px;
+  border: 2px solid gray;
 }
 
 .loginButton {
@@ -92,10 +100,136 @@ input {
   font-size: 100%;
   font-weight: bolder;
   border: none;
+  margin-top: 1em;
+  border-radius: 10px;
+}
+
+.loginButton:hover {
+  background-color: rgb(102, 102, 255);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+
+.links {
+  padding: 3em;
+}
+
+.text {
+  padding-bottom: 1em;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 2em;
+  margin: 1em;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
+.goal-box {
+  padding: 1em 1em 0 0;
+}
+
+.profileImg {
+  width: 20em;
+  height: auto;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.editButton {
+  padding: 10px;
+  background-color: rgb(140, 140, 255);
+  color: white;
+  font-size: 60%;
+  font-weight: bolder;
+  border: none;
+  margin-top: 1em;
+  border-radius: 10px;
+}
+
+.editButton:hover {
+  background-color: rgb(102, 102, 255);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  width: 100%;
+  padding-bottom: 1em;
+}
+
+.name {
+  background-color: white;
+}
+
+.goal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
+.goalButton {
+  background-color: rgb(140, 140, 255);
+  color: white;
+  width: 1em;
+  border: none;
+}
+
+.goalButton:hover {
+  background-color: rgb(102, 102, 255);
+}
+
+.goalTitle {
+  display: flex;
+  justify-content: center;
+  padding: 0.5em;
+}
+
+.workoutLogs-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1em;
+  justify-content: space-evenly;
+}
+
+.workoutLog {
+  position: relative;
+}
+
+.delete {
+position: absolute;
+bottom: .5em;
+}
+
+.exerciseLogs {
+  background-color: white;
+  padding-bottom: 2em;
 }

@@ -39,8 +39,7 @@ const ExerciseLog = ({ exerciseLog }) => {
   }, [exerciseLog])
   return (
     <div>
-      <h3>{exerciseName}</h3>
-      <p>{muscleName}</p>
+      <h3 className="name">{exerciseName} ({muscleName})</h3>
       <div>{logs}</div>
     </div>
   )

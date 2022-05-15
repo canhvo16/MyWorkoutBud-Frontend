@@ -21,14 +21,14 @@ const WorkoutLog = ({ workoutLog, destroyWorkoutLog }) => {
   }, [workoutLog])
 
   return (
-    <div>
-      <p>{date}</p>
-      <h2>{workoutLog.name}</h2>
-      <p>{workoutLog.notes}</p>
-      <div>
+    <div className="goal-container workoutLog">
+      <p className="name">{date}</p>
+      <h2 className="name">{workoutLog.name}</h2>
+      <p className="name">{workoutLog.notes}</p>
+      <div className="exerciseLogs">
         {logs}
       </div>
-      <button onClick={() => destroyWorkoutLog(workoutLog.id)}>Delete</button>
+      <button className="editButton delete" onClick={() => destroyWorkoutLog(workoutLog.id)}>Delete</button>
     </div>
   )
 }

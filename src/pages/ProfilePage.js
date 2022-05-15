@@ -40,11 +40,19 @@ const ProfilePage = ({
 
     profileBox = (
       <div>
-        <img src={img} alt="profile" width="500px"></img>
-        <h1>{user.name}</h1>
-        <button onClick={showEditor}>{infoText}</button>
-        <button onClick={showPasswordForm}>{passwordText}</button>
-        <button onClick={destroyAccount}>DELETE ACCOUNT</button>
+        <img className="profileImg" src={img} alt="profile" width="500px"></img>
+        <h1 className="name">{user.name}</h1>
+        <div className="button-container">
+          <button className="editButton" onClick={showEditor}>
+            {infoText}
+          </button>
+          <button className="editButton" onClick={showPasswordForm}>
+            {passwordText}
+          </button>
+          <button className="editButton" onClick={destroyAccount}>
+            DELETE ACCOUNT
+          </button>
+        </div>
       </div>
     )
   }
@@ -82,19 +90,21 @@ const ProfilePage = ({
   ) : null
 
   return (
-    <div>
-      <div>
+    <div className="profile">
+      <div className="info">
         <div>{profileBox}</div>
         <div>{editorBox}</div>
         <div>{passwordBox}</div>
       </div>
-      <div>
+      <div className="goal-box">
         <div>
-          <button onClick={showGoalTrackerForm}>Add A Goal Tracker</button>
+          <button className="editButton" onClick={showGoalTrackerForm}>
+            Add A Goal Tracker
+          </button>
           {goalForm}
         </div>
         <div>
-          <h2>Ongoing Goals</h2>
+          <h2 className="goalTitle">Ongoing Goals</h2>
           {goalTrackers}
         </div>
       </div>
