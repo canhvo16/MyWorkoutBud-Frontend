@@ -37,6 +37,10 @@
   color: white;
 }
 
+.navTitle:hover {
+  cursor: pointer;
+}
+
 .homepage {
   width: 100vw;
   height: 80vh;

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 
-const NavBar = ({ payload, logout }) => {
+const NavBar = ({ payload, logout, navigate }) => {
 
   let profileURL
 
@@ -11,6 +11,7 @@ const NavBar = ({ payload, logout }) => {
     <div>
       {!payload && (
         <div className="nav1"> 
+          <NavLink to='/'>Home</NavLink>
           <NavLink to='/about'>About</NavLink>
           <NavLink to='/login'>Login</NavLink>
           <NavLink to='/register'>Register</NavLink>
@@ -19,7 +20,7 @@ const NavBar = ({ payload, logout }) => {
       } 
       {payload && (
         <div className="nav">
-          <h1 className="navTitle">MyWorkoutBud</h1>
+          <h1 onClick={() => navigate('/')} className="navTitle">MyWorkoutBud</h1>
           <div className="navButtons">
             <NavLink to={profileURL}>Profile</NavLink>
             <NavLink to='/workoutLogs'>Workout Logs</NavLink>

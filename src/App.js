@@ -427,7 +427,7 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <NavBar payload={payload} logout={logout} />
+        <NavBar navigate={navigate} payload={payload} logout={logout} />
       </header>
       <main>
         <Routes>
