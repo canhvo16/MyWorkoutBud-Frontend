@@ -25,9 +25,18 @@ MyWorkoutBud is a full stack PERN application inspired by MyFitnessPal to help u
 
 ## **_Screenshots_**
 
+![Image](src/assets/MyWorkoutBud-Home.png)
+![Image](src/assets/MyWorkoutBud-Profile.png)
+
 ---
 
 ## **_Future Update_**
+
+#### After completing this project, I would love to these features:
+
+- Have the application notify them when they haven't logged a workout for the day
+- Have users able to interact with each other and see each others logs
+- Option to favorite workout logs
 
 ---
 
