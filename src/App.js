@@ -258,10 +258,15 @@ function App() {
 
   const onSubmitGoal = async (e) => {
     e.preventDefault()
-    if (payload) {
-      setGoalBody({ ...goalBody, userId: payload.id })
+    let goal = {
+      name: goalBody.name,
+      description: goalBody.description,
+      duration: goalBody.duration,
+      daysCompleted: 0,
+      completed: false,
+      userId: payload.id
     }
-    await CreateGoal(goalBody)
+    await CreateGoal(goal)
     toggleGoalTrackerForm(false)
     const goals = await GetUserGoals(payload.id)
     setGoals(goals)
